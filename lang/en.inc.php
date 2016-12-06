@@ -99,6 +99,7 @@ $messages['sendsmshelp'] = "Enter your login to get password reset token. Then t
 $messages['smssent'] = "A confirmation code has been send by SMS";
 $messages['smsnotsent'] = "Error when sending SMS";
 $messages['smsnonumber'] = "Can't find mobile number";
+$messages['sshpubkey'] = "SSH Public Key"
 $messages['userfullname'] = "User full name";
 $messages['username'] = "Username";
 $messages['smscrypttokensrequired'] = "You can't use reset by SMS without crypt_tokens setting";

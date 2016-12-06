@@ -43,6 +43,7 @@ if (isset($_POST["oldpassword"]) and $_POST["oldpassword"]) { $oldpassword = $_P
  else { $result = "oldpasswordrequired"; }
 if (isset($_REQUEST["login"]) and $_REQUEST["login"]) { $login = $_REQUEST["login"]; }
  else { $result = "loginrequired"; }
+if (isset($_REQUEST["sshpubkey"]) and $_REQUEST["sshpubkey"]) { $sshpubkey = $_REQUEST["sshpubkey"]; }
 if (! isset($_REQUEST["login"]) and ! isset($_POST["confirmpassword"]) and ! isset($_POST["newpassword"]) and ! isset($_POST["oldpassword"]))
  { $result = "emptychangeform"; }
 
@@ -51,6 +52,7 @@ $login = stripslashes_if_gpc_magic_quotes($login);
 $oldpassword = stripslashes_if_gpc_magic_quotes($oldpassword);
 $newpassword = stripslashes_if_gpc_magic_quotes($newpassword);
 $confirmpassword = stripslashes_if_gpc_magic_quotes($confirmpassword);
+$sshpubkey = stripslashes_if_gpc_magic_quotes($sshpubkey);
 
 # Check the entered username for characters that our installation doesn't support
 if ( $result === "" ) {
@@ -185,7 +187,7 @@ if ( $result === "" ) {
 # Change password
 #==============================================================================
 if ( $result === "" ) {
-    $result = change_password($ldap, $userdn, $newpassword, $ad_mode, $ad_options, $samba_mode, $samba_options, $shadow_options, $hash, $hash_options, $who_change_password, $oldpassword);
+    $result = change_password($ldap, $userdn, $newpassword, $ad_mode, $ad_options, $samba_mode, $samba_options, $shadow_options, $hash, $hash_options, $who_change_password, $oldpassword, $sshpubkey);
     if ( $result === "passwordchanged" && isset($posthook) ) {
         exec(escapeshellcmd("$posthook $login $newpassword $oldpassword"));
     }
@@ -270,6 +272,15 @@ if ($pwd_show_policy_pos === 'above') {
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
                 <input type="password" name="confirmpassword" id="confirmpassword" class="form-control" placeholder="<?php echo $messages["confirmpassword"]; ?>" />
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="sshpubkey" class="col-sm-4 control-label"><?php echo $messages["sshpubkey"]; ?></label>
+        <div class="col-sm-8">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
+                <input type="textarea" name="sshpubkey" id="sshpubkey" class="form-control" placeholder="<?php echo $messages["sshpubkey"]; ?>" />
             </div>
         </div>
     </div>
