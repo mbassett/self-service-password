@@ -245,7 +245,7 @@ function change_password( $ldap, $dn, $password, $ad_mode, $ad_options, $samba_m
 
     $time = time();
 
-    if ( $sshpubkey !== "") {
+    if ( $sshpubkey != "")  {
         $userdata["sshPublicKey"] = $sshpubkey;
     }
 

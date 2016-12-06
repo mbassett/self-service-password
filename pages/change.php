@@ -83,7 +83,7 @@ if ( $result === "" ) {
 # Check old password
 #==============================================================================
 if ( $result === "" ) {
-
+    #ldap_set_option(NULL, LDAP_OPT_DEBUG_LEVEL, 7);
     # Connect to LDAP
     $ldap = ldap_connect($ldap_url);
     ldap_set_option($ldap, LDAP_OPT_PROTOCOL_VERSION, 3);
