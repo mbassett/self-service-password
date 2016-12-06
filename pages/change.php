@@ -278,10 +278,7 @@ if ($pwd_show_policy_pos === 'above') {
     <div class="form-group">
         <label for="sshpubkey" class="col-sm-4 control-label"><?php echo $messages["sshpubkey"]; ?></label>
         <div class="col-sm-8">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-fw fa-lock"></i></span>
-                <input type="textarea" name="sshpubkey" id="sshpubkey" class="form-control" placeholder="<?php echo $messages["sshpubkey"]; ?>" />
-            </div>
+                <input type="textarea" style="height: 300px;" name="sshpubkey" id="sshpubkey" class="form-control" placeholder="<?php echo $messages["sshpubkey"]; ?>" />
         </div>
     </div>
 <?php if ($use_recaptcha) { ?>
